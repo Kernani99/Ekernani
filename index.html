@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تحويل الأورو إلى الدينار</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +26,6 @@
             padding: 0;
         }
         
-        /* أنماط رسالة Toast */
         .toast {
             position: fixed;
             top: 20px;
@@ -103,113 +101,6 @@
             font-size: 1.1rem;
         }
         
-        /* أنماط قسم التقييمات في الأسفل */
-        .testimonials {
-            margin: 40px 0 20px 0;
-            padding: 40px 0;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .testimonials h2 {
-            text-align: center;
-            color: var(--dark-color);
-            margin-bottom: 30px;
-        }
-        
-        .testimonials-slider {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-        
-        .testimonial {
-            text-align: center;
-            padding: 20px;
-            display: none;
-        }
-        
-        .testimonial.active {
-            display: block;
-            animation: fadeIn 0.5s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .testimonial img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 15px;
-            border: 3px solid var(--primary-color);
-        }
-        
-        .testimonial .name {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-        
-        .testimonial .position {
-            color: #666;
-            margin-bottom: 15px;
-        }
-        
-        .stars {
-            color: #FFD700;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-        
-        .testimonial .text {
-            font-style: italic;
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .slider-nav {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .slider-dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background-color: #ccc;
-            border-radius: 50%;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-        
-        .slider-dot.active {
-            background-color: var(--primary-color);
-        }
-        
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            cursor: pointer;
-        }
-        
-        .prev {
-            right: 0;
-        }
-        
-        .next {
-            left: 0;
-        }
-        
         .main-content {
             display: flex;
             flex-wrap: wrap;
@@ -217,7 +108,7 @@
             margin-top: 30px;
         }
         
-        .converter-section, .chart-section, .order-section {
+        .converter-section, .order-section {
             background: white;
             border-radius: 10px;
             padding: 20px;
@@ -228,10 +119,6 @@
         
         .converter-section {
             border-top: 5px solid var(--primary-color);
-        }
-        
-        .chart-section {
-            border-top: 5px solid var(--secondary-color);
         }
         
         .order-section {
@@ -265,7 +152,6 @@
             font-family: 'Cairo', sans-serif;
         }
         
-        /* نمط حقل سعر الصرف غير القابل للتعديل */
         .exchange-rate-display {
             background-color: #f5f5f5;
             padding: 10px;
@@ -302,19 +188,29 @@
             display: none;
         }
         
-        .chart-container {
-            position: relative;
-            height: 300px;
-            width: 100%;
-        }
-        
         .calculated-amount {
             font-weight: bold;
             color: var(--primary-color);
             margin-top: 10px;
         }
         
-        /* أنماط رسالة الشكر */
+        .conversion-box {
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        .conversion-box strong {
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
+        
+        .fa-euro-sign {
+            color: #2ecc71;
+        }
+        
         .thank-you-message {
             position: fixed;
             top: 50%;
@@ -351,7 +247,6 @@
             display: none;
         }
         
-        /* أنماط النافذة المنبثقة لرسالة الرصيد */
         .euro-balance-popup {
             position: fixed;
             top: 50%;
@@ -430,10 +325,6 @@
             h1 {
                 font-size: 1.8rem;
             }
-            
-            .testimonials-slider {
-                padding: 0 20px;
-            }
         }
     </style>
 </head>
@@ -494,13 +385,6 @@
                 <div id="conversion-result" class="result"></div>
             </section>
             
-            <section class="chart-section">
-                <h2>مخطط تغير سعر الصرف</h2>
-                <div class="chart-container">
-                    <canvas id="exchangeChart"></canvas>
-                </div>
-            </section>
-            
             <section class="order-section">
                 <h2>طلب عملة</h2>
                 <form id="order-form">
@@ -541,69 +425,6 @@
                 <div id="order-result" class="result"></div>
             </section>
         </div>
-
-        <!-- قسم التقييمات في الأسفل قبل الفوتر -->
-        <section class="testimonials">
-            <h2>آراء عملائنا</h2>
-            <div class="testimonials-slider">
-                <div class="slider-arrow prev"><i class="fas fa-chevron-right"></i></div>
-                <div class="slider-arrow next"><i class="fas fa-chevron-left"></i></div>
-                
-                <div class="testimonial active">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="عميل 1">
-                    <div class="name">أحمد محمد</div>
-                    <div class="position">عميل منذ 2022</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="text">
-                        "خدمة ممتازة وسريعة، تحويل الأموال يتم في دقائق معدودة مع أفضل الأسعار. أوصي الجميع بهذه الخدمة!"
-                    </div>
-                </div>
-                
-                <div class="testimonial">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="عميلة 2">
-                    <div class="name">سارة عبدالله</div>
-                    <div class="position">عميلة منذ 2021</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <div class="text">
-                        "تجربة رائعة مع هذا الموقع، واجهة سهلة الاستخدام وأسعار تنافسية. شكراً لكم على الخدمة المميزة."
-                    </div>
-                </div>
-                
-                <div class="testimonial">
-                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="عميل 3">
-                    <div class="name">خالد علي</div>
-                    <div class="position">عميل منذ 2023</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <div class="text">
-                        "المخططات التوضيحية لتغير الأسعار مفيدة جداً لاتخاذ القرار. الخدمة سريعة والموظفون محترفون."
-                    </div>
-                </div>
-                
-                <div class="slider-nav">
-                    <span class="slider-dot active"></span>
-                    <span class="slider-dot"></span>
-                    <span class="slider-dot"></span>
-                </div>
-            </div>
-        </section>
     </div>
     
     <footer>
@@ -622,4 +443,157 @@
         // عرض سعر الصرف في جميع الأماكن
         function updateExchangeRateDisplay() {
             document.getElementById('current-rate').textContent = currentExchangeRate.toFixed(4);
-            document.getElementById('order-current-rate
+            document.getElementById('order-current-rate').textContent = currentExchangeRate.toFixed(4);
+        }
+        
+        // تحديث سعر الصرف عند تحميل الصفحة
+        updateExchangeRateDisplay();
+        
+        // تحويل العملة
+        document.getElementById('convert-btn').addEventListener('click', function() {
+            console.log("تم النقر على زر التحويل");
+            
+            const amountInput = document.getElementById('amount');
+            const rateSpan = document.getElementById('current-rate');
+            const resultDiv = document.getElementById('conversion-result');
+            
+            const amount = parseFloat(amountInput.value);
+            const rate = parseFloat(rateSpan.textContent);
+            
+            if (isNaN(amount) || amount <= 0) {
+                showToast('الرجاء إدخال مبلغ صحيح أكبر من الصفر', 'error');
+                amountInput.focus();
+                return;
+            }
+            
+            if (isNaN(rate)) {
+                showToast('خطأ في سعر الصرف، يرجى تحديث الصفحة', 'error');
+                return;
+            }
+            
+            const result = amount * rate;
+            resultDiv.innerHTML = `
+                <div class="conversion-box">
+                    <p>${amount.toFixed(2)} <i class="fas fa-euro-sign"></i> = 
+                    <strong>${result.toFixed(2)} دينار</strong></p>
+                    <small>سعر الصرف: 1 يورو = ${rate.toFixed(4)} دينار</small>
+                </div>
+            `;
+            resultDiv.style.display = 'block';
+        });
+        
+        // حساب المبلغ تلقائياً في نموذج الطلب
+        function calculateOrderAmount() {
+            const amount = parseFloat(document.getElementById('order-amount').value);
+            
+            if (!isNaN(amount)) {
+                const result = amount * currentExchangeRate;
+                document.getElementById('order-calculation').textContent = 
+                    `المبلغ بالدينار: ${result.toFixed(2)} دينار`;
+            } else {
+                document.getElementById('order-calculation').textContent = '';
+            }
+        }
+        
+        document.getElementById('order-amount').addEventListener('input', calculateOrderAmount);
+        
+        // وظيفة عرض Toast
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            
+            if (type === 'error') {
+                toast.style.backgroundColor = 'var(--danger-color)';
+            } else if (type === 'warning') {
+                toast.style.backgroundColor = 'orange';
+            } else {
+                toast.style.backgroundColor = 'var(--secondary-color)';
+            }
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+        
+        // إغلاق رسالة الشكر
+        document.getElementById('closeThankYou').addEventListener('click', function() {
+            document.getElementById('thankYouMessage').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        });
+        
+        // إغلاق نافذة الرصيد باليورو
+        document.getElementById('closeEuroPopup').addEventListener('click', function() {
+            document.getElementById('euroBalancePopup').style.display = 'none';
+            document.getElementById('euroPopupOverlay').style.display = 'none';
+        });
+        
+        // عرض نافذة الرصيد باليورو بعد تحميل الصفحة
+        window.addEventListener('load', function() {
+            const hasEuroBalance = true;
+            const isAbroad = true;
+            
+            if (hasEuroBalance && isAbroad) {
+                setTimeout(function() {
+                    document.getElementById('euroBalancePopup').style.display = 'block';
+                    document.getElementById('euroPopupOverlay').style.display = 'block';
+                }, 2000);
+            }
+        });
+        
+        // معالجة نموذج الطلب
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const amount = parseFloat(document.getElementById('order-amount').value);
+            const paymentMethod = document.getElementById('payment-method').value;
+            
+            if (isNaN(amount)) {
+                showToast('الرجاء إدخال مبلغ صحيح', 'error');
+                return;
+            }
+            
+            const totalAmount = amount * currentExchangeRate;
+            
+            showToast('جاري إرسال طلبك...');
+            
+            setTimeout(() => {
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('thankYouMessage').style.display = 'block';
+                
+                document.getElementById('order-form').reset();
+                document.getElementById('order-calculation').textContent = '';
+                
+                const resultElement = document.getElementById('order-result');
+                resultElement.innerHTML = `
+                    <p>تفاصيل الطلب:</p>
+                    <ul>
+                        <li>المبلغ: ${amount.toFixed(2)} يورو (${totalAmount.toFixed(2)} دينار)</li>
+                        <li>سعر الصرف: 1 يورو = ${currentExchangeRate.toFixed(4)} دينار</li>
+                        <li>طريقة الدفع: ${getPaymentMethodName(paymentMethod)}</li>
+                    </ul>
+                `;
+                resultElement.style.display = 'block';
+            }, 1500);
+        });
+        
+        function getPaymentMethodName(method) {
+            switch(method) {
+                case 'bank': return 'تحويل بنكي';
+                case 'cash': return 'نقداً';
+                case 'credit': return 'بطاقة ائتمان';
+                default: return method;
+            }
+        }
+        
+        function updateExchangeRate(newRate) {
+            currentExchangeRate = newRate;
+            updateExchangeRateDisplay();
+            showToast('تم تحديث سعر الصرف بنجاح');
+        }
+    </script>
+</body>
+</html>
