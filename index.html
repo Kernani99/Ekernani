@@ -614,9 +614,36 @@
         });
         
         // معالجة نموذج الطلب
-        document.getElementById('order-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
+document.getElementById('order-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // بيانات الطلب
+  const orderData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    amount: parseFloat(document.getElementById('order-amount').value),
+    rate: currentExchangeRate,
+    paymentMethod: document.getElementById('payment-method').value
+  };
+  
+  // الرابط الذي حصلت عليه عند النشر
+  const googleScriptUrl = "https://script.google.com/macros/s/AKfycbwgMtAMvMub4gQU7BMJPgBYxP0MzyxqJDST82BvtnGDHctx-m8tFgsUQWYE8YZH1eJZ/exec";
+  
+  // إرسال البيانات
+  fetch(googleScriptUrl, {
+    method: 'POST',
+    body: JSON.stringify(orderData)
+  })
+  .then(response => response.text())
+  .then(message => {
+    showToast(message);
+    document.getElementById('thankYouMessage').style.display = 'block';
+  })
+  .catch(error => {
+    showToast('حدث خطأ في الإرسال', 'error');
+  });
+});            
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
