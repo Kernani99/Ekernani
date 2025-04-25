@@ -462,10 +462,10 @@
                         <label for="payment-method">طريقة الدفع</label>
                         <select id="payment-method" required>
                             <option value="">اختر طريقة الدفع</option>
-                            <option value="bank">يد بيد</option>
-                            <option value="cash">تحويل بريدي CCP RIP</option>
+                            <option value="hand">يد بيد</option>
+                            <option value="ccp">تحويل بريدي CCP RIP</option>
                         </select>
-                        <div id="bank-notification" class="bank-notification">
+                        <div id="bank-notification" class="bank-notification" style="display: none;">
                             <i class="fas fa-info-circle"></i> يدا بيد متاحة فقط في سطيف، الجزائر العاصمة، وهران، عنابة
                         </div>
                     </div>
@@ -491,15 +491,14 @@
         let buyRate = 250;  // سعر الشراء (شراء اليورو من العميل)
         let sellRate = 270; // سعر البيع (بيع اليورو للعميل)
         let currentExchangeRate = buyRate; // نستخدم سعر الشراء كافتراضي
+        let currentOperationType = 'buy'; // نوع العملية الحالية
         
         // عرض سعر الصرف في جميع الأماكن
         function updateExchangeRateDisplay() {
             document.getElementById('buy-rate').textContent = buyRate.toFixed(4);
             document.getElementById('sell-rate').textContent = sellRate.toFixed(4);
-            document.getElementById('current-rate').textContent = currentExchangeRate.toFixed(4);
             document.getElementById('order-buy-rate').textContent = buyRate.toFixed(4);
             document.getElementById('order-sell-rate').textContent = sellRate.toFixed(4);
-            document.getElementById('order-current-rate').textContent = currentExchangeRate.toFixed(4);
         }
         
         // تحديث سعر الصرف عند تحميل الصفحة
@@ -507,6 +506,7 @@
         
         // التبديل بين سعر الشراء والبيع
         function setExchangeRate(type) {
+            currentOperationType = type;
             if (type === 'buy') {
                 currentExchangeRate = buyRate;
                 document.querySelector('.rate-buttons button:nth-child(1)').style.backgroundColor = 'var(--secondary-color)';
@@ -524,14 +524,21 @@
         document.getElementById('convert-btn').addEventListener('click', function() {
             const amountInput = document.getElementById('amount');
             const amount = parseFloat(amountInput.value);
-            const rate = currentExchangeRate;
-            const operationType = currentExchangeRate === buyRate ? 'شراء' : 'بيع';
             
-            if (isNaN(amount) || amount <= 0) {
-                showToast('الرجاء إدخال مبلغ صحيح أكبر من الصفر', 'error');
+            if (isNaN(amount)) {
+                showToast('الرجاء إدخال مبلغ صحيح', 'error');
                 amountInput.focus();
                 return;
             }
+            
+            if (amount <= 0) {
+                showToast('المبلغ يجب أن يكون أكبر من الصفر', 'error');
+                amountInput.focus();
+                return;
+            }
+            
+            const rate = currentExchangeRate;
+            const operationType = currentOperationType === 'buy' ? 'الشراء' : 'البيع';
             
             const result = amount * rate;
             document.getElementById('conversion-result').innerHTML = `
@@ -606,7 +613,7 @@
         // عرض إشعار طريقة الدفع
         document.getElementById('payment-method').addEventListener('change', function() {
             const bankNotification = document.getElementById('bank-notification');
-            if (this.value === 'bank') {
+            if (this.value === 'hand') {
                 bankNotification.style.display = 'block';
             } else {
                 bankNotification.style.display = 'none';
@@ -623,8 +630,8 @@
             const amount = parseFloat(document.getElementById('order-amount').value);
             const paymentMethod = document.getElementById('payment-method').value;
             
-            if (isNaN(amount)) {
-                showToast('الرجاء إدخال مبلغ صحيح', 'error');
+            if (isNaN(amount) || amount <= 0) {
+                showToast('الرجاء إدخال مبلغ صحيح أكبر من الصفر', 'error');
                 return;
             }
             
@@ -654,27 +661,10 @@
         
         function getPaymentMethodName(method) {
             switch(method) {
-                case 'bank': return 'يد بيد';
-                case 'cash': return 'تحويل بريدي CCP RIP';
+                case 'hand': return 'يد بيد';
+                case 'ccp': return 'تحويل بريدي CCP RIP';
                 default: return method;
             }
-        }
-        
-        function updateExchangeRate(newRate, type) {
-            if (type === 'buy') {
-                buyRate = newRate;
-            } else if (type === 'sell') {
-                sellRate = newRate;
-            }
-            
-            if (currentExchangeRate === buyRate && type === 'buy') {
-                currentExchangeRate = buyRate;
-            } else if (currentExchangeRate === sellRate && type === 'sell') {
-                currentExchangeRate = sellRate;
-            }
-            
-            updateExchangeRateDisplay();
-            showToast(`تم تحديث سعر ${type === 'buy' ? 'الشراء' : 'البيع'} بنجاح`);
         }
     </script>
 </body>
