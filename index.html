@@ -468,7 +468,9 @@
                             <option value="cash">تحويل بريدي CCP RIP</option>
                         </select>
                         <div id="bank-notification" class="bank-notification">
-<i class="fas fa-info-circle"></i>يدا بيد متاحة فقط في سطيف ,الجزائر العاصمة ,وهران ,عنابة                    </div>
+                            <i class="fas fa-info-circle"></i> يدا بيد متاحة فقط في سطيف، الجزائر العاصمة، وهران، عنابة
+                        </div>
+                    </div>
                     <div id="order-calculation" class="calculated-amount"></div>
                     <button type="submit">إرسال الطلب</button>
                 </form>
@@ -603,7 +605,7 @@
             }
         });
         
-        // عرض إشعار التحويل البنكي
+        // عرض إشعار طريقة الدفع
         document.getElementById('payment-method').addEventListener('change', function() {
             const bankNotification = document.getElementById('bank-notification');
             if (this.value === 'bank') {
@@ -614,36 +616,9 @@
         });
         
         // معالجة نموذج الطلب
-document.getElementById('order-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  // بيانات الطلب
-  const orderData = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
-    amount: parseFloat(document.getElementById('order-amount').value),
-    rate: currentExchangeRate,
-    paymentMethod: document.getElementById('payment-method').value
-  };
-  
-  // الرابط الذي حصلت عليه عند النشر
-  const googleScriptUrl = "https://script.google.com/macros/s/AKfycbwgMtAMvMub4gQU7BMJPgBYxP0MzyxqJDST82BvtnGDHctx-m8tFgsUQWYE8YZH1eJZ/exec";
-  
-  // إرسال البيانات
-  fetch(googleScriptUrl, {
-    method: 'POST',
-    body: JSON.stringify(orderData)
-  })
-  .then(response => response.text())
-  .then(message => {
-    showToast(message);
-    document.getElementById('thankYouMessage').style.display = 'block';
-  })
-  .catch(error => {
-    showToast('حدث خطأ في الإرسال', 'error');
-  });
-});            
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
@@ -681,8 +656,8 @@ document.getElementById('order-form').addEventListener('submit', function(e) {
         
         function getPaymentMethodName(method) {
             switch(method) {
-                case 'bank': return 'تحويل بنكي';
-                case 'credit': return 'بطاقة ائتمان';
+                case 'bank': return 'يد بيد';
+                case 'cash': return 'تحويل بريدي CCP RIP';
                 default: return method;
             }
         }
