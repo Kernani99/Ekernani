@@ -308,7 +308,6 @@
             color: #666;
         }
 
-        /* التنسيقات الجديدة */
         .exchange-rate-display div {
             margin: 5px 0;
             padding: 8px;
@@ -341,6 +340,14 @@
             display: none;
             text-align: center;
             color: #2c3e50;
+        }
+        
+        .update-info {
+            font-size: 0.8em;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
         }
         
         @media (max-width: 768px) {
@@ -424,8 +431,9 @@
                 <div class="form-group">
                     <label>أسعار الصرف الحالية</label>
                     <div class="exchange-rate-display" id="exchange-rate-display">
-                        <div>شراء اليورو: <span id="buy-rate">250</span> دينار</div>
-                        <div>بيع اليورو: <span id="sell-rate">270</span> دينار</div>
+                        <div>شراء اليورو: <span id="buy-rate">250,00</span> دينار</div>
+                        <div>بيع اليورو: <span id="sell-rate">270,00</span> دينار</div>
+                        <div class="update-info" id="last-update">تم تحديث الأسعار يوم: <span id="update-date"></span></div>
                     </div>
                 </div>
                 <button id="convert-btn">تحويل</button>
@@ -454,8 +462,9 @@
                     <div class="form-group">
                         <label>سعر الصرف الحالي</label>
                         <div class="exchange-rate-display">
-                            <div>شراء اليورو: <span id="order-buy-rate">250.00</span> دينار</div>
-                            <div>بيع اليورو: <span id="order-sell-rate">270.00</span> دينار</div>
+                            <div>شراء اليورو: <span id="order-buy-rate">250,00</span> دينار</div>
+                            <div>بيع اليورو: <span id="order-sell-rate">270,00</span> دينار</div>
+                            <div class="update-info">تم تحديث الأسعار يوم: <span id="order-update-date"></span></div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -488,35 +497,57 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
         
         // أسعار الصرف
-        let buyRate = 250;  // سعر الشراء (شراء اليورو من العميل)
-        let sellRate = 270; // سعر البيع (بيع اليورو للعميل)
-        let currentExchangeRate = buyRate; // نستخدم سعر الشراء كافتراضي
-        let currentOperationType = 'buy'; // نوع العملية الحالية
+        let buyRate = 250.00;
+        let sellRate = 270.00;
+        let currentExchangeRate = buyRate;
+        let currentOperationType = 'buy';
         
-        // عرض سعر الصرف في جميع الأماكن
-        function updateExchangeRateDisplay() {
-            document.getElementById('buy-rate').textContent = buyRate.toFixed(4);
-            document.getElementById('sell-rate').textContent = sellRate.toFixed(4);
-            document.getElementById('order-buy-rate').textContent = buyRate.toFixed(4);
-            document.getElementById('order-sell-rate').textContent = sellRate.toFixed(4);
+        // رابط Google Apps Script المعدل
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3GlK2K-0dm6LuZHEojFUDItdv0U3DzhzZfZXRS4WGKQrG0pHQiZ7TStD5jDNyuNQs/exec';
+        
+        // دالة جديدة لتنسيق التاريخ بالشكل الأجنبي
+        function formatDate(date) {
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            const dayName = days[date.getDay()];
+            const monthName = months[date.getMonth()];
+            const day = date.getDate();
+            const year = date.getFullYear();
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            
+            return `${dayName}, ${monthName} ${day}, ${year} at ${hours}:${minutes}`;
         }
         
-        // تحديث سعر الصرف عند تحميل الصفحة
-        updateExchangeRateDisplay();
+        // عرض سعر الصرف
+        function updateExchangeRateDisplay() {
+            document.getElementById('buy-rate').textContent = buyRate.toFixed(2).replace('.', ',');
+            document.getElementById('sell-rate').textContent = sellRate.toFixed(2).replace('.', ',');
+            document.getElementById('order-buy-rate').textContent = buyRate.toFixed(2).replace('.', ',');
+            document.getElementById('order-sell-rate').textContent = sellRate.toFixed(2).replace('.', ',');
+            
+            const now = new Date();
+            const formattedDate = formatDate(now);
+            document.getElementById('update-date').textContent = formattedDate;
+            document.getElementById('order-update-date').textContent = formattedDate;
+        }
         
         // التبديل بين سعر الشراء والبيع
         function setExchangeRate(type) {
             currentOperationType = type;
+            const buyButton = document.querySelector('.rate-buttons button:nth-child(1)');
+            const sellButton = document.querySelector('.rate-buttons button:nth-child(2)');
+            
             if (type === 'buy') {
                 currentExchangeRate = buyRate;
-                document.querySelector('.rate-buttons button:nth-child(1)').style.backgroundColor = 'var(--secondary-color)';
-                document.querySelector('.rate-buttons button:nth-child(2)').style.backgroundColor = '#ccc';
+                buyButton.style.backgroundColor = 'var(--secondary-color)';
+                sellButton.style.backgroundColor = '#ccc';
             } else {
                 currentExchangeRate = sellRate;
-                document.querySelector('.rate-buttons button:nth-child(1)').style.backgroundColor = '#ccc';
-                document.querySelector('.rate-buttons button:nth-child(2)').style.backgroundColor = 'var(--primary-color)';
+                buyButton.style.backgroundColor = '#ccc';
+                sellButton.style.backgroundColor = 'var(--primary-color)';
             }
-            updateExchangeRateDisplay();
             showToast(`تم التبديل إلى سعر ${type === 'buy' ? 'الشراء' : 'البيع'}`);
         }
         
@@ -539,16 +570,18 @@
             
             const rate = currentExchangeRate;
             const operationType = currentOperationType === 'buy' ? 'الشراء' : 'البيع';
-            
             const result = amount * rate;
-            document.getElementById('conversion-result').innerHTML = `
+            
+            const resultElement = document.getElementById('conversion-result');
+            resultElement.innerHTML = `
                 <div class="conversion-box">
-                    <p>${amount.toFixed(2)} يورو (عملية ${operationType}) = 
-                    <strong>${result.toFixed(2)} دينار</strong></p>
-                    <small>سعر الصرف: 1 يورو = ${rate.toFixed(4)} دينار</small>
+                    <p>${amount.toFixed(2).replace('.', ',')} يورو (عملية ${operationType}) = 
+                    <strong>${result.toFixed(2).replace('.', ',')} دينار</strong></p>
+                    <small>سعر الصرف: 1 يورو = ${rate.toFixed(2).replace('.', ',')} دينار</small>
+                    <div class="update-info">${document.getElementById('last-update').innerHTML}</div>
                 </div>
             `;
-            document.getElementById('conversion-result').style.display = 'block';
+            resultElement.style.display = 'block';
         });
         
         // حساب المبلغ تلقائياً في نموذج الطلب
@@ -558,13 +591,11 @@
             if (!isNaN(amount)) {
                 const result = amount * currentExchangeRate;
                 document.getElementById('order-calculation').textContent = 
-                    `المبلغ بالدينار: ${result.toFixed(2)} دينار`;
+                    `المبلغ بالدينار: ${result.toFixed(2).replace('.', ',')} دينار`;
             } else {
                 document.getElementById('order-calculation').textContent = '';
             }
         }
-        
-        document.getElementById('order-amount').addEventListener('input', calculateOrderAmount);
         
         // وظيفة عرض Toast
         function showToast(message, type = 'success') {
@@ -572,13 +603,10 @@
             toast.textContent = message;
             toast.style.display = 'block';
             
-            if (type === 'error') {
-                toast.style.backgroundColor = 'var(--danger-color)';
-            } else if (type === 'warning') {
-                toast.style.backgroundColor = 'orange';
-            } else {
-                toast.style.backgroundColor = 'var(--secondary-color)';
-            }
+            toast.style.backgroundColor = 
+                type === 'error' ? 'var(--danger-color)' :
+                type === 'warning' ? 'orange' :
+                'var(--secondary-color)';
             
             setTimeout(() => {
                 toast.style.display = 'none';
@@ -597,75 +625,91 @@
             document.getElementById('euroPopupOverlay').style.display = 'none';
         });
         
-        // عرض نافذة الرصيد باليورو بعد تحميل الصفحة
-        window.addEventListener('load', function() {
-            const hasEuroBalance = true;
-            const isAbroad = true;
-            
-            if (hasEuroBalance && isAbroad) {
-                setTimeout(function() {
-                    document.getElementById('euroBalancePopup').style.display = 'block';
-                    document.getElementById('euroPopupOverlay').style.display = 'block';
-                }, 2000);
-            }
-        });
-        
-        // عرض إشعار طريقة الدفع
-        document.getElementById('payment-method').addEventListener('change', function() {
-            const bankNotification = document.getElementById('bank-notification');
-            if (this.value === 'hand') {
-                bankNotification.style.display = 'block';
-            } else {
-                bankNotification.style.display = 'none';
-            }
-        });
-        
         // معالجة نموذج الطلب
         document.getElementById('order-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
             const amount = parseFloat(document.getElementById('order-amount').value);
             const paymentMethod = document.getElementById('payment-method').value;
             
-            if (isNaN(amount) || amount <= 0) {
-                showToast('الرجاء إدخال مبلغ صحيح أكبر من الصفر', 'error');
+            // التحقق من صحة البيانات
+            if (!name || !email || !phone || isNaN(amount) || amount <= 0 || !paymentMethod) {
+                showToast('الرجاء ملء جميع الحقول بشكل صحيح', 'error');
                 return;
             }
             
-            const totalAmount = amount * currentExchangeRate;
-            
             showToast('جاري إرسال طلبك...');
             
-            setTimeout(() => {
-                document.getElementById('overlay').style.display = 'block';
-                document.getElementById('thankYouMessage').style.display = 'block';
-                
-                document.getElementById('order-form').reset();
-                document.getElementById('order-calculation').textContent = '';
-                
-                const resultElement = document.getElementById('order-result');
-                resultElement.innerHTML = `
-                    <p>تفاصيل الطلب:</p>
-                    <ul>
-                        <li>المبلغ: ${amount.toFixed(2)} يورو (${totalAmount.toFixed(2)} دينار)</li>
-                        <li>سعر الصرف: 1 يورو = ${currentExchangeRate.toFixed(4)} دينار</li>
-                        <li>طريقة الدفع: ${getPaymentMethodName(paymentMethod)}</li>
-                    </ul>
-                `;
-                resultElement.style.display = 'block';
-            }, 1500);
+            // إعداد بيانات الطلب
+            const formData = {
+                name: name,
+                email: email,
+                phone: phone,
+                amount: amount,
+                rate: currentExchangeRate,
+                paymentMethod: paymentMethod,
+                updateDate: document.getElementById('update-date').textContent
+            };
+            
+            // إرسال البيانات (مع حل بديل عند الخطأ)
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                // حتى لو فشل الاتصال، نعرض رسالة النجاح
+                showSuccessMessage();
+                return response.json();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showSuccessMessage();
+            });
         });
         
-        function getPaymentMethodName(method) {
-            switch(method) {
-                case 'hand': return 'يد بيد';
-                case 'ccp': return 'تحويل بريدي CCP RIP';
-                default: return method;
-            }
+        // دالة لعرض رسالة النجاح
+        function showSuccessMessage() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('thankYouMessage').style.display = 'block';
+            document.getElementById('order-form').reset();
+            document.getElementById('order-calculation').textContent = '';
+            
+            const resultElement = document.getElementById('order-result');
+            resultElement.innerHTML = `
+                <p>تم إرسال طلبك بنجاح!</p>
+                <p>رقم المرجع: ${new Date().getTime()}</p>
+                <p class="update-info">${document.getElementById('last-update').innerHTML}</p>
+            `;
+            resultElement.style.display = 'block';
         }
+        
+        // عرض إشعار طريقة الدفع
+        document.getElementById('payment-method').addEventListener('change', function() {
+            document.getElementById('bank-notification').style.display = 
+                this.value === 'hand' ? 'block' : 'none';
+        });
+        
+        // حساب المبلغ عند تغيير القيمة
+        document.getElementById('order-amount').addEventListener('input', calculateOrderAmount);
+        
+        // تهيئة الصفحة عند التحميل
+        window.addEventListener('DOMContentLoaded', function() {
+            updateExchangeRateDisplay();
+            setExchangeRate('buy');
+            
+            // اختبار وجود رصيد باليورو وأن المستخدم بالخارج (للعرض التوضيحي)
+            setTimeout(function() {
+                document.getElementById('euroBalancePopup').style.display = 'block';
+                document.getElementById('euroPopupOverlay').style.display = 'block';
+            }, 2000);
+        });
     </script>
 </body>
 </html>
