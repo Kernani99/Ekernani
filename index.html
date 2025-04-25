@@ -307,6 +307,41 @@
             padding: 20px;
             color: #666;
         }
+
+        /* التنسيقات الجديدة */
+        .exchange-rate-display div {
+            margin: 5px 0;
+            padding: 8px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        button[onclick^="setExchangeRate"] {
+            flex: 1;
+            padding: 10px;
+            transition: all 0.3s;
+        }
+
+        .rate-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .rate-buttons button {
+            flex: 1;
+        }
+
+        .bank-notification {
+            background-color: #f8f9fa;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+            color: #2c3e50;
+        }
         
         @media (max-width: 768px) {
             .main-content {
@@ -324,6 +359,10 @@
             
             h1 {
                 font-size: 1.8rem;
+            }
+
+            .rate-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -376,9 +415,18 @@
                     <input type="number" id="amount" placeholder="أدخل المبلغ" step="0.01" min="0">
                 </div>
                 <div class="form-group">
-                    <label>سعر الصرف الحالي</label>
+                    <label>نوع العملية</label>
+                    <div class="rate-buttons">
+                        <button type="button" onclick="setExchangeRate('buy')" style="background-color: var(--secondary-color);">شراء اليورو</button>
+                        <button type="button" onclick="setExchangeRate('sell')" style="background-color: var(--primary-color);">بيع اليورو</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>أسعار الصرف الحالية</label>
                     <div class="exchange-rate-display" id="exchange-rate-display">
-                        1 يورو = <span id="current-rate">160.50</span> دينار
+                        <div>شراء اليورو: <span id="buy-rate">250.0000</span> دينار</div>
+                        <div>بيع اليورو: <span id="sell-rate">270.0000</span> دينار</div>
+                        <div>السعر المطبق: <span id="current-rate">250.0000</span> دينار</div>
                     </div>
                 </div>
                 <button id="convert-btn">تحويل</button>
@@ -407,18 +455,20 @@
                     <div class="form-group">
                         <label>سعر الصرف الحالي</label>
                         <div class="exchange-rate-display">
-                            1 يورو = <span id="order-current-rate">160.50</span> دينار
+                            <div>شراء اليورو: <span id="order-buy-rate">250.0000</span> دينار</div>
+                            <div>بيع اليورو: <span id="order-sell-rate">270.0000</span> دينار</div>
+                            <div>السعر المطبق: <span id="order-current-rate">250.0000</span> دينار</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="payment-method">طريقة الدفع</label>
                         <select id="payment-method" required>
                             <option value="">اختر طريقة الدفع</option>
-                            <option value="bank">تحويل بنكي</option>
-                            <option value="cash">نقداً</option>
-                            <option value="credit">بطاقة ائتمان</option>
+                            <option value="bank">يد بيد</option>
+                            <option value="cash">تحويل بريدي CCP RIP</option>
                         </select>
-                    </div>
+                        <div id="bank-notification" class="bank-notification">
+<i class="fas fa-info-circle"></i>يدا بيد متاحة فقط في سطيف ,الجزائر العاصمة ,وهران ,عنابة                    </div>
                     <div id="order-calculation" class="calculated-amount"></div>
                     <button type="submit">إرسال الطلب</button>
                 </form>
@@ -437,28 +487,45 @@
         // سنة حقوق النشر الحالية
         document.getElementById('current-year').textContent = new Date().getFullYear();
         
-        // سعر الصرف الحالي (يمكنك تحديثه من هنا فقط)
-        let currentExchangeRate = 160.50;
+        // أسعار الصرف
+        let buyRate = 250;  // سعر الشراء (شراء اليورو من العميل)
+        let sellRate = 270; // سعر البيع (بيع اليورو للعميل)
+        let currentExchangeRate = buyRate; // نستخدم سعر الشراء كافتراضي
         
         // عرض سعر الصرف في جميع الأماكن
         function updateExchangeRateDisplay() {
+            document.getElementById('buy-rate').textContent = buyRate.toFixed(4);
+            document.getElementById('sell-rate').textContent = sellRate.toFixed(4);
             document.getElementById('current-rate').textContent = currentExchangeRate.toFixed(4);
+            document.getElementById('order-buy-rate').textContent = buyRate.toFixed(4);
+            document.getElementById('order-sell-rate').textContent = sellRate.toFixed(4);
             document.getElementById('order-current-rate').textContent = currentExchangeRate.toFixed(4);
         }
         
         // تحديث سعر الصرف عند تحميل الصفحة
         updateExchangeRateDisplay();
         
+        // التبديل بين سعر الشراء والبيع
+        function setExchangeRate(type) {
+            if (type === 'buy') {
+                currentExchangeRate = buyRate;
+                document.querySelector('.rate-buttons button:nth-child(1)').style.backgroundColor = 'var(--secondary-color)';
+                document.querySelector('.rate-buttons button:nth-child(2)').style.backgroundColor = '#ccc';
+            } else {
+                currentExchangeRate = sellRate;
+                document.querySelector('.rate-buttons button:nth-child(1)').style.backgroundColor = '#ccc';
+                document.querySelector('.rate-buttons button:nth-child(2)').style.backgroundColor = 'var(--primary-color)';
+            }
+            updateExchangeRateDisplay();
+            showToast(`تم التبديل إلى سعر ${type === 'buy' ? 'الشراء' : 'البيع'}`);
+        }
+        
         // تحويل العملة
         document.getElementById('convert-btn').addEventListener('click', function() {
-            console.log("تم النقر على زر التحويل");
-            
             const amountInput = document.getElementById('amount');
-            const rateSpan = document.getElementById('current-rate');
-            const resultDiv = document.getElementById('conversion-result');
-            
             const amount = parseFloat(amountInput.value);
-            const rate = parseFloat(rateSpan.textContent);
+            const rate = currentExchangeRate;
+            const operationType = currentExchangeRate === buyRate ? 'شراء' : 'بيع';
             
             if (isNaN(amount) || amount <= 0) {
                 showToast('الرجاء إدخال مبلغ صحيح أكبر من الصفر', 'error');
@@ -466,20 +533,15 @@
                 return;
             }
             
-            if (isNaN(rate)) {
-                showToast('خطأ في سعر الصرف، يرجى تحديث الصفحة', 'error');
-                return;
-            }
-            
             const result = amount * rate;
-            resultDiv.innerHTML = `
+            document.getElementById('conversion-result').innerHTML = `
                 <div class="conversion-box">
-                    <p>${amount.toFixed(2)} <i class="fas fa-euro-sign"></i> = 
+                    <p>${amount.toFixed(2)} يورو (عملية ${operationType}) = 
                     <strong>${result.toFixed(2)} دينار</strong></p>
                     <small>سعر الصرف: 1 يورو = ${rate.toFixed(4)} دينار</small>
                 </div>
             `;
-            resultDiv.style.display = 'block';
+            document.getElementById('conversion-result').style.display = 'block';
         });
         
         // حساب المبلغ تلقائياً في نموذج الطلب
@@ -541,6 +603,16 @@
             }
         });
         
+        // عرض إشعار التحويل البنكي
+        document.getElementById('payment-method').addEventListener('change', function() {
+            const bankNotification = document.getElementById('bank-notification');
+            if (this.value === 'bank') {
+                bankNotification.style.display = 'block';
+            } else {
+                bankNotification.style.display = 'none';
+            }
+        });
+        
         // معالجة نموذج الطلب
         document.getElementById('order-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -583,16 +655,26 @@
         function getPaymentMethodName(method) {
             switch(method) {
                 case 'bank': return 'تحويل بنكي';
-                case 'cash': return 'نقداً';
                 case 'credit': return 'بطاقة ائتمان';
                 default: return method;
             }
         }
         
-        function updateExchangeRate(newRate) {
-            currentExchangeRate = newRate;
+        function updateExchangeRate(newRate, type) {
+            if (type === 'buy') {
+                buyRate = newRate;
+            } else if (type === 'sell') {
+                sellRate = newRate;
+            }
+            
+            if (currentExchangeRate === buyRate && type === 'buy') {
+                currentExchangeRate = buyRate;
+            } else if (currentExchangeRate === sellRate && type === 'sell') {
+                currentExchangeRate = sellRate;
+            }
+            
             updateExchangeRateDisplay();
-            showToast('تم تحديث سعر الصرف بنجاح');
+            showToast(`تم تحديث سعر ${type === 'buy' ? 'الشراء' : 'البيع'} بنجاح`);
         }
     </script>
 </body>
