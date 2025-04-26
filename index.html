@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قرناني لتحويل العملات الرقمية</title>
+    <title>قرناني لبيع وشراء العملات الإلكترونية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,35 @@
             --gbp-color: #6f42c1;
             --eur-color: #007bff;
             --whatsapp-color: #25D366;
+            --news-bar-color: #d35400;
+        }
+        
+        /* شريط الأخبار المتحرك */
+        .news-bar {
+            background-color: var(--news-bar-color);
+            color: white;
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .news-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll 15s linear infinite;
+        }
+        
+        .news-bar i {
+            margin-left: 10px;
+            color: gold;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
         
         body {
@@ -318,6 +347,9 @@
             margin-top: 30px;
             padding: 20px;
             color: #666;
+            background-color: white;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
         }
 
         .exchange-rate-display div {
@@ -401,6 +433,29 @@
             display: none;
         }
         
+        /* شعار بريد الجزائر والدفع الإلكتروني */
+        .poste-algerie {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .poste-algerie img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .poste-algerie p {
+            margin: 0;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -430,10 +485,23 @@
             .bank-logo {
                 height: 40px;
             }
+            
+            .poste-algerie {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- شريط الأخبار المتحرك -->
+    <div class="news-bar">
+        <div class="news-content">
+            <i class="fas fa-bullhorn"></i>
+            آخر تحديث: تم تحديث الأسعار بتاريخ 15 يوليو 2023 - تحويلات سريعة وآمنة - أفضل الأسعار في السوق - نقبل الدفع عبر بريد الجزائر - أسعار تنافسية
+        </div>
+    </div>
+    
     <!-- رسالة Toast -->
     <div id="toast" class="toast"></div>
     
@@ -450,14 +518,11 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="60px" height="60px">
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-                    </svg>
+                    <img src="https://cdn-icons-png.flaticon.com/512/1086/1086741.png" alt="شعار قرناني">
                 </div>
                 <div class="header-text">
-                    <h1>محول العملات إلى الدينار</h1>
-                    <p>تحويل مباشر من اليورو، الدولار والجنيه إلى الدينار</p>
+                    <h1>قرناني لبيع وشراء العملات الإلكترونية</h1>
+                    <p>تحويل مباشر من اليورو والدولار والباوند إلى الدينار الجزائري بسعر السكوار</p>
                 </div>
             </div>
         </div>
@@ -549,11 +614,17 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Revolut_logo.svg" alt="Revolut" class="bank-logo">
             </div>
         </div>
+        
+        <!-- شعار بريد الجزائر والدفع الإلكتروني -->
+        <div class="poste-algerie">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Logo_Poste_Alg%C3%A9rie.svg/1200px-Logo_Poste_Alg%C3%A9rie.svg.png" alt="بريد الجزائر">
+            <p>نقبل الدفع الإلكتروني عبر بريد الجزائر</p>
+        </div>
     </div>
     
     <footer>
         <div class="container">
-            <p>جميع الحقوق محفوظة &copy; <span id="current-year"></span> محول العملات</p>
+            <p>جميع الحقوق محفوظة &copy; <span id="current-year"></span> قرناني لبيع وشراء العملات الإلكترونية</p>
         </div>
     </footer>
 
@@ -700,6 +771,11 @@
             document.getElementById('euroBalancePopup').style.display = 'none';
             document.getElementById('euroPopupOverlay').style.display = 'none';
         });
+        
+        // جعل شريط الأخبار يعمل بدون توقف
+        const newsContent = document.querySelector('.news-content');
+        const originalContent = newsContent.innerHTML;
+        newsContent.innerHTML = originalContent + ' ' + originalContent;
         
         // تهيئة الصفحة عند التحميل
         window.addEventListener('DOMContentLoaded', function() {
