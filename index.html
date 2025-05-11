@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قرناني - خدمات التمويل الإعلاني وتبادل العملات</title>
+    <title>قرناني - خدمات تبادل العملات</title>
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4488/4488426.png" type="image/png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -117,266 +117,6 @@
             margin: 10px 0 0;
             font-size: 1.2rem;
             opacity: 0.9;
-        }
-        
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-            border-bottom: none;
-            position: relative;
-        }
-        
-        .tabs::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 2px;
-            background: #eee;
-            z-index: 1;
-        }
-        
-        .tab-btn {
-            padding: 15px 30px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--tab-inactive-color);
-            position: relative;
-            transition: all 0.3s;
-            margin: 0 5px;
-            border-radius: 8px 8px 0 0;
-            z-index: 2;
-        }
-        
-        .tab-btn i {
-            margin-left: 10px;
-            font-size: 1.1em;
-        }
-        
-        .tab-btn.active {
-            color: var(--tab-active-color);
-            background-color: white;
-            box-shadow: 0 -3px 10px rgba(0,0,0,0.05);
-        }
-        
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            right: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 2px;
-            z-index: 3;
-        }
-        
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .pricing-section {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 20px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            border-top: 5px solid var(--primary-color);
-        }
-        
-        .pricing-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 15px;
-            margin: 20px 0;
-        }
-        
-        .pricing-table thead th {
-            background: linear-gradient(135deg, var(--primary-color), #3b5998);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 1.1rem;
-            position: relative;
-            border: none;
-            width: 33.33%;
-        }
-        
-        .pricing-table thead th:first-child {
-            border-radius: 10px 0 0 10px;
-        }
-        
-        .pricing-table thead th:last-child {
-            border-radius: 0 10px 10px 0;
-        }
-        
-        .pricing-table th i {
-            margin-left: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .pricing-table td {
-            padding: 15px;
-            text-align: center;
-            background: white;
-            position: relative;
-            border: 1px solid #eee;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-            width: 33.33%;
-        }
-        
-        .pricing-table tr:hover td {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .pricing-table tr td:first-child {
-            border-radius: 8px 0 0 8px;
-        }
-        
-        .pricing-table tr td:last-child {
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .plan-name {
-            font-weight: 700;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-        }
-        
-        .price-tag {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .price-tag i {
-            margin-left: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.95rem;
-        }
-        
-        .feature-item i {
-            margin-left: 10px;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            min-width: 25px;
-            text-align: center;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary-color), #3b5998);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            font-size: 0.95rem;
-            gap: 8px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-            background: linear-gradient(135deg, #3b5998, var(--primary-color));
-        }
-        
-        .highlight {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: var(--accent-color);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-            z-index: 2;
-        }
-        
-        .extra-services {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 40px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-            border-top: 4px solid var(--accent-color);
-        }
-        
-        .extra-services h2 {
-            color: var(--primary-color);
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            font-size: 1.4rem;
-        }
-        
-        .extra-services h2 i {
-            margin-left: 12px;
-            color: var(--accent-color);
-            font-size: 1.3rem;
-        }
-        
-        .extra-services p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-        
-        .note-box {
-            background: #f8f9fa;
-            border-right: 4px solid var(--primary-color);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 30px 0;
-        }
-        
-        .note-box p {
-            margin: 8px 0;
-            display: flex;
-            align-items: center;
-            font-size: 1.05rem;
-        }
-        
-        .note-box i {
-            margin-left: 12px;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            min-width: 25px;
         }
         
         .currency-section {
@@ -869,10 +609,6 @@
             color: var(--danger-color);
         }
         
-        .package-transaction {
-            color: var(--primary-color);
-        }
-        
         /* Euro balance popup styles */
         .euro-balance-popup {
             display: none;
@@ -985,11 +721,6 @@
                 font-size: 1.1rem;
             }
             
-            .tab-btn {
-                padding: 12px 20px;
-                font-size: 1rem;
-            }
-            
             .currency-card {
                 min-width: 160px;
             }
@@ -997,36 +728,9 @@
             .countries-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .pricing-table {
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
-            }
-            
-            .pricing-table td {
-                white-space: normal;
-            }
-            
-            .banks-logos {
-                gap: 15px;
-            }
-            
-            .bank-logo {
-                height: 40px;
-            }
         }
         
         @media (max-width: 480px) {
-            .tab-btn {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .tab-btn i {
-                margin-left: 5px;
-            }
-            
             .currency-cards {
                 flex-direction: column;
                 align-items: center;
@@ -1063,306 +767,144 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/1086/1086741.png" alt="شعار قرناني">
                 </div>
                 <div class="header-text">
-                    <h1>قرناني للخدمات الرقمية</h1>
-                    <p>تمويل إعلانات فيسبوك وتبادل العملات الإلكترونية بأفضل الأسعار</p>
+                    <h1>قرناني لتبادل العملات</h1>
+                    <p>تبادل العملات الإلكترونية بأفضل الأسعار</p>
                 </div>
             </div>
         </div>
     </header>
     
     <div class="container">
-        <!-- تبويب الصفحة - محسن -->
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="ad-funding">
-                <i class="fas fa-ad"></i> تمويل الإعلانات
-            </button>
-            <button class="tab-btn" data-tab="currency-exchange">
-                <i class="fas fa-exchange-alt"></i> تبادل العملات
-            </button>
-        </div>
-        
-        <!-- قسم تمويل الإعلانات - معدل -->
-        <div id="ad-funding" class="tab-content active">
-            <div class="pricing-section">
-                <h2><i class="fas fa-ad"></i> باقات تمويل الإعلانات</h2>
-                
-                <!-- إضافة شريط التعاملات الأخيرة -->
-                <div class="transactions-ticker">
-                    <div class="ticker-title">
-                        <i class="fas fa-history"></i> آخر تعاملات الباقات
+        <div class="currency-section">
+            <h2><i class="fas fa-exchange-alt"></i> خدمات تبادل العملات</h2>
+            
+            <!-- إضافة شريط التعاملات الأخيرة -->
+            <div class="transactions-ticker">
+                <div class="ticker-title">
+                    <i class="fas fa-history"></i> آخر تعاملات العملات
+                </div>
+                <div class="ticker-container">
+                    <div class="ticker-content" id="currency-transactions-ticker">
+                        <!-- سيتم إضافة التعاملات عبر JavaScript -->
                     </div>
-                    <div class="ticker-container">
-                        <div class="ticker-content" id="ad-transactions-ticker">
-                            <!-- سيتم إضافة التعاملات عبر JavaScript -->
-                        </div>
-                    </div>
-                </div>
-                
-                <table class="pricing-table">
-                    <thead>
-                        <tr>
-                            <th><i class="fas fa-crown"></i> الباقة الأساسية</th>
-                            <th><i class="fas fa-rocket"></i> الباقة المتقدمة</th>
-                            <th><i class="fas fa-gem"></i> الباقة المميزة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="plan-name">باقة مبتدئ</div>
-                            </td>
-                            <td>
-                                <div class="plan-name">باقة متقدمة</div>
-                            </td>
-                            <td>
-                                <div class="plan-name">باقة إعلانات متميزة</div>
-                                <div class="highlight">الأكثر طلباً</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="feature-item">
-                                    <i class="fas fa-calendar-alt"></i> مدة الإعلان: 5 أيام
-                                </div>
-                            </td>
-                            <td>
-                                <div class="feature-item">
-                                    <i class="fas fa-calendar-alt"></i> مدة الإعلان: 10 أيام
-                                </div>
-                            </td>
-                            <td>
-                                <div class="feature-item">
-                                    <i class="fas fa-calendar-alt"></i> مدة الإعلان: 20 يوم
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="feature-item">
-                                    <i class="fas fa-users"></i>
-                                    35 - 101 زيادة في المتابعين يومياً
-                                </div>
-                            </td>
-                            <td>
-                                <div class="feature-item">
-                                    <i class="fas fa-users"></i> 
-                                    47 - 136 زيادة في المتابعين يومياً
-                                </div>
-                            </td>
-                            <td>
-                                <div class="feature-item">
-                                    <i class="fas fa-users"></i> 
-                                    61 - 177 زيادة في المتابعين يومياً
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="feature-item">
-                                    <i class="fas fa-chart-line"></i>
-9.7K - 28K
-                                </div>
-                            </td>
-                            <td>
-                                <div class="feature-item">
-                                    <i class="fas fa-chart-line"></i>
-13K - 37K
-                                </div>
-                            </td>
-                            <td>
-                                <div class="feature-item">
-                                    <i class="fas fa-chart-line"></i>
-14K - 42K
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="price-tag">
-                                    <i class="fas fa-tag"></i> 5,000 د.ج
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price-tag">
-                                    <i class="fas fa-tag"></i> 12,000 د.ج
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price-tag">
-                                    <i class="fas fa-tag"></i> 31,000 د.ج
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button class="btn whatsapp-plan-btn" data-plan="باقة مبتدئ">
-                                    <i class="fab fa-whatsapp"></i> اختر الباقة
-                                </button>
-                            </td>
-                            <td>
-                                <button class="btn whatsapp-plan-btn" data-plan="باقة متقدمة">
-                                    <i class="fab fa-whatsapp"></i> اختر الباقة
-                                </button>
-                            </td>
-                            <td>
-                                <button class="btn whatsapp-plan-btn" data-plan="باقة إعلانات متميزة">
-                                    <i class="fab fa-whatsapp"></i> اختر الباقة
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="payment-methods">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/AlgeriePoste.svg" alt="بريد الجزائر">
-                    <p>نقبل الدفع الإلكتروني عبر بريد الجزائر والتحويلات البنكية</p>
-                </div>
-                
-                <div class="extra-services">
-                    <h2><i class="fas fa-plus-circle"></i> خدمات إضافية</h2>
-                    <p>نقدم خدمات تصميم احترافية للشعارات والهويات البصرية لتعزيز حضورك الرقمي. يمكنك الحصول على تصميم شعار خاص بك مع هوية بصرية متكاملة مقابل 3000 د.ج إضافية.</p>
-                </div>
-                
-                <div class="note-box">
-                    <p><i class="fas fa-info-circle"></i> الأسعار ثابتة مع إمكانية التفاوض للعملاء الدائمين</p>
-                    <p><i class="fas fa-gift"></i> كل 8 إعلانات ممولة تحصل على إعلان ممول مجاني</p>
                 </div>
             </div>
-        </div>
-        
-        <!-- قسم تبادل العملات - محسن -->
-        <div id="currency-exchange" class="tab-content">
-            <div class="currency-section">
-                <h2><i class="fas fa-exchange-alt"></i> خدمات تبادل العملات</h2>
-                
-                <!-- إضافة شريط التعاملات الأخيرة -->
-                <div class="transactions-ticker">
-                    <div class="ticker-title">
-                        <i class="fas fa-history"></i> آخر تعاملات العملات
+            
+            <div class="currency-cards">
+                <div class="currency-card eur">
+                    <div class="currency-icon">
+                        <i class="fas fa-euro-sign"></i>
                     </div>
-                    <div class="ticker-container">
-                        <div class="ticker-content" id="currency-transactions-ticker">
-                            <!-- سيتم إضافة التعاملات عبر JavaScript -->
-                        </div>
-                    </div>
+                    <div class="currency-name">اليورو الأوروبي</div>
+                    <div class="currency-rate" id="eur-rate">1 EUR = 250.00 DZD</div>
+                    <div class="update-info">سعر اليوم</div>
                 </div>
                 
-                <div class="currency-cards">
-                    <div class="currency-card eur">
-                        <div class="currency-icon">
-                            <i class="fas fa-euro-sign"></i>
-                        </div>
-                        <div class="currency-name">اليورو الأوروبي</div>
-                        <div class="currency-rate" id="eur-rate">1 EUR = 250.00 DZD</div>
-                        <div class="update-info">سعر اليوم</div>
+                <div class="currency-card usd">
+                    <div class="currency-icon">
+                        <i class="fas fa-dollar-sign"></i>
                     </div>
-                    
-                    <div class="currency-card usd">
-                        <div class="currency-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <div class="currency-name">الدولار الأمريكي</div>
-                        <div class="currency-rate" id="usd-rate">1 USD = 135.00 DZD</div>
-                        <div class="update-info">سعر اليوم</div>
-                    </div>
-                    
-                    <div class="currency-card gbp">
-                        <div class="currency-icon">
-                            <i class="fas fa-pound-sign"></i>
-                        </div>
-                        <div class="currency-name">الجنيه الإسترليني</div>
-                        <div class="currency-rate" id="gbp-rate">1 GBP = 170.00 DZD</div>
-                        <div class="update-info">سعر اليوم</div>
-                    </div>
+                    <div class="currency-name">الدولار الأمريكي</div>
+                    <div class="currency-rate" id="usd-rate">1 USD = 135.00 DZD</div>
+                    <div class="update-info">سعر اليوم</div>
                 </div>
+                
+                <div class="currency-card gbp">
+                    <div class="currency-icon">
+                        <i class="fas fa-pound-sign"></i>
+                    </div>
+                    <div class="currency-name">الجنيه الإسترليني</div>
+                    <div class="currency-rate" id="gbp-rate">1 GBP = 170.00 DZD</div>
+                    <div class="update-info">سعر اليوم</div>
+                </div>
+            </div>
 
-                <section class="converter-section">
-                    <h2><i class="fas fa-calculator"></i> محول العملات</h2>
-                    
-                    <div class="form-group">
-                        <label for="currency">العملة المطلوب تحويلها</label>
-                        <select id="currency">
-                            <option value="EUR">اليورو (EUR)</option>
-                            <option value="USD">الدولار (USD)</option>
-                            <option value="GBP">الجنيه (GBP)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="amount">المبلغ</label>
-                        <input type="number" id="amount" placeholder="أدخل المبلغ" step="0.01" min="0">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>نوع العملية</label>
-                        <div class="rate-buttons">
-                            <button type="button" onclick="setExchangeRate('buy')" id="buy-btn" class="active">شراء</button>
-                            <button type="button" onclick="setExchangeRate('sell')" id="sell-btn">بيع</button>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>أسعار الصرف الحالية</label>
-                        <div class="exchange-rate-display" id="exchange-rate-display">
-                            <div id="buy-rate-display">سعر الشراء: 1 EUR = 250.00 DZD</div>
-                            <div id="sell-rate-display">سعر البيع: 1 EUR = 270.00 DZD</div>
-                            <div class="update-info">تم تحديث الأسعار يوم: <span id="update-date">الأحد، 27 أفريل 2025</span></div>
-                        </div>
-                    </div>
-                    
-                    <button id="convert-btn" class="exchange-btn">
-                        <i class="fas fa-exchange-alt"></i> تحويل
-                    </button>
-                    
-                    <a href="https://wa.me/213673608090?text=مرحباً، أريد طلب رصيد من العملات" class="whatsapp-btn" target="_blank">
-                        <i class="fab fa-whatsapp"></i> راسلنا لطلب الرصيد الآن
-                    </a>
-                    
-                    <div id="conversion-result" class="result"></div>
-                </section>
+            <section class="converter-section">
+                <h2><i class="fas fa-calculator"></i> محول العملات</h2>
                 
-                <div class="payment-methods">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/AlgeriePoste.svg" alt="بريد الجزائر">
-                    <p>نقبل الدفع الإلكتروني عبر بريد الجزائر والتحويلات البنكية</p>
+                <div class="form-group">
+                    <label for="currency">العملة المطلوب تحويلها</label>
+                    <select id="currency">
+                        <option value="EUR">اليورو (EUR)</option>
+                        <option value="USD">الدولار (USD)</option>
+                        <option value="GBP">الجنيه (GBP)</option>
+                    </select>
                 </div>
                 
-                <div class="banks-section">
-                    <h3 class="banks-title">البنوك التي ندعم التحويلات إليها</h3>
-                    <div class="banks-logos">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Paysera_logo_2022.png" alt="Paysera" class="bank-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/New_Wise_%28formerly_TransferWise%29_logo.svg/1024px-New_Wise_%28formerly_TransferWise%29_logo.svg.png" alt="Wise" class="bank-logo">
-                        <img src="https://myfin.bg/assets/images/logo.png" alt="Myfin" class="bank-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Revolut_logo.svg" alt="Revolut" class="bank-logo">
+                <div class="form-group">
+                    <label for="amount">المبلغ</label>
+                    <input type="number" id="amount" placeholder="أدخل المبلغ" step="0.01" min="0">
+                </div>
+                
+                <div class="form-group">
+                    <label>نوع العملية</label>
+                    <div class="rate-buttons">
+                        <button type="button" onclick="setExchangeRate('buy')" id="buy-btn" class="active">شراء</button>
+                        <button type="button" onclick="setExchangeRate('sell')" id="sell-btn">بيع</button>
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <label>أسعار الصرف الحالية</label>
+                    <div class="exchange-rate-display" id="exchange-rate-display">
+                        <div id="buy-rate-display">سعر الشراء: 1 EUR = 250.00 DZD</div>
+                        <div id="sell-rate-display">سعر البيع: 1 EUR = 270.00 DZD</div>
+                        <div class="update-info">تم تحديث الأسعار يوم: <span id="update-date">الأحد، 27 أفريل 2025</span></div>
+                    </div>
+                </div>
+                
+                <button id="convert-btn" class="exchange-btn">
+                    <i class="fas fa-exchange-alt"></i> تحويل
+                </button>
+                
+                <a href="https://wa.me/213673608090?text=مرحباً، أريد طلب رصيد من العملات" class="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> راسلنا لطلب الرصيد الآن
+                </a>
+                
+                <div id="conversion-result" class="result"></div>
+            </section>
+            
+            <div class="payment-methods">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/AlgeriePoste.svg" alt="بريد الجزائر">
+                <p>نقبل الدفع الإلكتروني عبر بريد الجزائر والتحويلات البنكية</p>
+            </div>
+            
+            <div class="banks-section">
+                <h3 class="banks-title">البنوك التي ندعم التحويلات إليها</h3>
+                <div class="banks-logos">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Paysera_logo_2022.png" alt="Paysera" class="bank-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/New_Wise_%28formerly_TransferWise%29_logo.svg/1024px-New_Wise_%28formerly_TransferWise%29_logo.svg.png" alt="Wise" class="bank-logo">
+                    <img src="https://myfin.bg/assets/images/logo.png" alt="Myfin" class="bank-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Revolut_logo.svg" alt="Revolut" class="bank-logo">
+                </div>
+            </div>
 
-                <div class="countries-section">
-                    <h3 class="countries-title">نحن نتواجد في</h3>
-                    <div class="countries-grid">
-                        <div class="country-card">
-                            <img src="https://flagcdn.com/w40/de.png" alt="ألمانيا" class="country-flag">
-                            <div class="country-name">ألمانيا</div>
-                        </div>
-                        <div class="country-card">
-                            <img src="https://flagcdn.com/w40/us.png" alt="أمريكا" class="country-flag">
-                            <div class="country-name">الولايات المتحدة</div>
-                        </div>
-                        <div class="country-card">
-                            <img src="https://flagcdn.com/w40/it.png" alt="إيطاليا" class="country-flag">
-                            <div class="country-name">إيطاليا</div>
-                        </div>
-                        <div class="country-card">
-                            <img src="https://flagcdn.com/w40/gb.png" alt="بريطانيا" class="country-flag">
-                            <div class="country-name">المملكة المتحدة</div>
-                        </div>
-                        <div class="country-card">
-                            <img src="https://flagcdn.com/w40/fr.png" alt="فرنسا" class="country-flag">
-                            <div class="country-name">فرنسا</div>
-                        </div>
-                        <div class="country-card">
-                            <img src="https://flagcdn.com/w40/dz.png" alt="الجزائر" class="country-flag">
-                            <div class="country-name">الجزائر</div>
-                        </div>
+            <div class="countries-section">
+                <h3 class="countries-title">نحن نتواجد في</h3>
+                <div class="countries-grid">
+                    <div class="country-card">
+                        <img src="https://flagcdn.com/w40/de.png" alt="ألمانيا" class="country-flag">
+                        <div class="country-name">ألمانيا</div>
+                    </div>
+                    <div class="country-card">
+                        <img src="https://flagcdn.com/w40/us.png" alt="أمريكا" class="country-flag">
+                        <div class="country-name">الولايات المتحدة</div>
+                    </div>
+                    <div class="country-card">
+                        <img src="https://flagcdn.com/w40/it.png" alt="إيطاليا" class="country-flag">
+                        <div class="country-name">إيطاليا</div>
+                    </div>
+                    <div class="country-card">
+                        <img src="https://flagcdn.com/w40/gb.png" alt="بريطانيا" class="country-flag">
+                        <div class="country-name">المملكة المتحدة</div>
+                    </div>
+                    <div class="country-card">
+                        <img src="https://flagcdn.com/w40/fr.png" alt="فرنسا" class="country-flag">
+                        <div class="country-name">فرنسا</div>
+                    </div>
+                    <div class="country-card">
+                        <img src="https://flagcdn.com/w40/dz.png" alt="الجزائر" class="country-flag">
+                        <div class="country-name">الجزائر</div>
                     </div>
                 </div>
             </div>
@@ -1379,7 +921,7 @@
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-telegram"></i></a>
             </div>
-            <p>جميع الحقوق محفوظة &copy; <span id="current-year"></span> قرناني للخدمات الرقمية</p>
+            <p>جميع الحقوق محفوظة &copy; <span id="current-year"></span> قرناني لتبادل العملات</p>
         </div>
     </footer>
 
@@ -1408,16 +950,6 @@
             { type: 'buy', currency: 'EUR', amount: 75, name: 'يوسف بلمهدي' }
         ];
         
-        // بيانات التعاملات الأخيرة للباقات
-        const adTransactions = [
-            { package: 'الباقة الأساسية', name: 'نوح رقايقي' },
-            { package: 'الباقة المميزة', name: 'نجيب رقايقي' },
-            { package: 'الباقة المتقدمة', name: 'صلاح رقايقي' },
-            { package: 'الباقة الأساسية', name: 'التوأم سايح' },
-            { package: 'الباقة المميزة', name: 'سيم الجزائر' },
-            { package: 'الباقة المتقدمة', name: 'ماكسي انديستري' }
-        ];
-        
         // دالة لعرض التعاملات الأخيرة للعملات
         function displayCurrencyTransactions() {
             const tickerContent = document.getElementById('currency-transactions-ticker');
@@ -1436,26 +968,6 @@
                     <div class="ticker-item ${transactionClass}">
                         <i class="fas fa-${transaction.type === 'buy' ? 'hand-holding-usd' : 'money-bill-wave'}"></i>
                         قام ${transaction.name} ب${action} ${transaction.amount} ${currencySymbol}
-                    </div>
-                `;
-            });
-            
-            tickerContent.innerHTML = html;
-        }
-        
-        // دالة لعرض التعاملات الأخيرة للباقات
-        function displayAdTransactions() {
-            const tickerContent = document.getElementById('ad-transactions-ticker');
-            let html = '';
-            
-            // إنشاء نسخة مكررة من التعاملات لعرضها بشكل متكرر في الشريط
-            const transactionsToShow = [...adTransactions, ...adTransactions];
-            
-            transactionsToShow.forEach(transaction => {
-                html += `
-                    <div class="ticker-item package-transaction">
-                        <i class="fas fa-ad"></i>
-                        قام ${transaction.name} بشراء ${transaction.package}
                     </div>
                 `;
             });
@@ -1564,42 +1076,11 @@
             document.getElementById('euroPopupOverlay').style.display = 'none';
         });
         
-        // تبديل بين تبويبات الصفحة
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // إزالة الفعالية من جميع الأزرار
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                // إضافة الفعالية للزر المحدد
-                this.classList.add('active');
-                
-                // إخفاء جميع المحتويات
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                // إظهار المحتوى المحدد
-                const tabId = this.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-
-        // إرسال رسالة واتساب عند اختيار الباقة
-        document.querySelectorAll('.whatsapp-plan-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const planName = this.getAttribute('data-plan');
-                const phoneNumber = "+213673608090";
-                const message = `مرحباً، أنا مهتم بالباقة الإعلانية: ${planName}`;
-                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
-            });
-        });
-        
         // تهيئة الصفحة عند التحميل
         window.addEventListener('DOMContentLoaded', function() {
             updateExchangeRateDisplay();
             setExchangeRate('buy');
             displayCurrencyTransactions();
-            displayAdTransactions();
             
             setTimeout(function() {
                 document.getElementById('euroBalancePopup').style.display = 'block';
