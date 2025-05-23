@@ -42,43 +42,22 @@
         }
         .partner-carousel {
             display: flex;
-            animation: slide 20s linear infinite;
-            width: calc(200px * 10);
+            width: calc(250px * 8);
         }
         .partner-carousel img {
-            width: 180px;
-            height: 100px;
+            width: 220px;
+            height: 120px;
             object-fit: contain;
-            margin: 0 20px;
+            margin: 0 30px;
             filter: grayscale(100%);
             transition: filter 0.3s ease;
         }
         .partner-carousel img:hover {
             filter: grayscale(0%);
         }
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
         .carousel-container {
             overflow: hidden;
             position: relative;
-        }
-        .carousel-container::before, .carousel-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            z-index: 1;
-        }
-        .carousel-container::before {
-            left: 0;
-            background: linear-gradient(to left, transparent, #f8f8f8);
-        }
-        .carousel-container::after {
-            right: 0;
-            background: linear-gradient(to right, transparent, #f8f8f8);
         }
         .modal {
             display: none;
@@ -141,6 +120,20 @@
             width: 100%;
             height: 100%;
         }
+        .header-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            text-align: center;
+        }
+        .partner-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 30px;
+            min-width: 220px;
+        }
     </style>
 </head>
 <body>
@@ -151,12 +144,13 @@
 
     <!-- Header -->
     <header class="bg-gray-900 text-white py-6 sticky top-0 z-50 shadow-lg">
-        <div class="container mx-auto px-4 flex items-center justify-between">
-            <div class="flex items-center">
-                <img src="https://cdn-icons-png.flaticon.com/512/1661/1661093.png" alt="Logo" class="h-16 logo">
-                <h1 class="text-3xl font-bold mr-4">قرناني والمايسترو للإنتاج السمعي البصري</h1>
+        <div class="container mx-auto px-4">
+            <div class="header-center">
+                <div class="flex items-center justify-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1661/1661093.png" alt="Logo" class="h-16 logo">
+                    <h1 class="text-3xl font-bold mr-4">قرناني والمايسترو للإنتاج السمعي البصري</h1>
+                </div>
             </div>
-    
         </div>
     </header>
 
@@ -259,7 +253,7 @@
                 </div>
                 
                 <div class="p-8 bg-gray-50 rounded-lg shadow-md">
-<i class="fa-solid fa-drone"></i>
+                    <i class="fas fa-drone-alt text-5xl text-yellow-500 mb-4"></i>
                     <h3 class="text-2xl font-semibold text-gray-900">درون DJI</h3>
                     <p class="text-gray-600 mt-3">درون DJI Mavic 3 Pro بجودة 4K HDR</p>
                 </div>
@@ -274,36 +268,36 @@
             <p class="mt-4 text-xl text-gray-600">نفخر بالتعاون مع نخبة من العلامات التجارية المميزة</p>
             <div class="carousel-container mt-10">
                 <div class="partner-carousel flex">
-                    <div class="text-center mx-4">
-                        <p class="font-bold mb-2">شركة التقنية</p>
+                    <div class="partner-item">
+                        <p class="font-bold mb-2 text-lg">شركة التقنية</p>
                         <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 1">
                     </div>
-                    <div class="text-center mx-4">
-                        <p class="font-bold mb-2">مجموعة الأعمال</p>
+                    <div class="partner-item">
+                        <p class="font-bold mb-2 text-lg">مجموعة الأعمال</p>
                         <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 2">
                     </div>
-                    <div class="text-center mx-4">
-                        <p class="font-bold mb-2">مطاعم لذيذة</p>
+                    <div class="partner-item">
+                        <p class="font-bold mb-2 text-lg">مطاعم لذيذة</p>
                         <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 3">
                     </div>
-                    <div class="text-center mx-4">
-                        <p class="font-bold mb-2">وكالة سفر</p>
+                    <div class="partner-item">
+                        <p class="font-bold mb-2 text-lg">وكالة سفر</p>
                         <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 4">
                     </div>
-                    <div class="text-center mx-4">
-                        <p class="font-bold mb-2">علامة أزياء</p>
+                    <div class="partner-item">
+                        <p class="font-bold mb-2 text-lg">علامة أزياء</p>
                         <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 5">
                     </div>
-                    <div class="text-center mx-4">
-                        <p class="font-bold mb-2">شركة عقارية</p>
+                    <div class="partner-item">
+                        <p class="font-bold mb-2 text-lg">شركة عقارية</p>
                         <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 6">
                     </div>
-                    <div class="text-center mx-4">
-                        <p class="font-bold mb-2">مستشفى المدينة</p>
+                    <div class="partner-item">
+                        <p class="font-bold mb-2 text-lg">مستشفى المدينة</p>
                         <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 7">
                     </div>
-                    <div class="text-center mx-4">
-                        <p class="font-bold mb-2">جامعة المعرفة</p>
+                    <div class="partner-item">
+                        <p class="font-bold mb-2 text-lg">جامعة المعرفة</p>
                         <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 8">
                     </div>
                 </div>
@@ -387,7 +381,7 @@
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4 text-center">
             <img src="https://cdn-icons-png.flaticon.com/512/1661/1661093.png" alt="Logo" class="h-12 mx-auto mb-4 logo">
-            <p class="text-gray-300">© 2025 قرناني للإنتاج السمعي البصري. جميع الحقوق محفوظة.</p>
+            <p class="text-gray-300">© 2025 قرناني والمايسترو للإنتاج السمعي البصري. جميع الحقوق محفوظة.</p>
             <div class="mt-6 flex justify-center space-x-6">
                 <a href="#" class="text-yellow-400 hover:text-yellow-300"><i class="fab fa-facebook-f text-2xl"></i></a>
                 <a href="#" class="text-yellow-400 hover:text-yellow-300"><i class="fab fa-instagram text-2xl"></i></a>
