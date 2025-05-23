@@ -24,15 +24,6 @@
         .logo {
             filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
         }
-        .contact-form input, .contact-form textarea {
-            transition: all 0.3s ease;
-            background-color: #f4f4f4;
-        }
-        .contact-form input:focus, .contact-form textarea:focus {
-            border-color: #d4af37;
-            background-color: #fff;
-            outline: none;
-        }
         .nav-link {
             position: relative;
         }
@@ -52,11 +43,11 @@
         .partner-carousel {
             display: flex;
             animation: slide 20s linear infinite;
-            width: calc(150px * 10); /* Adjust based on number of logos */
+            width: calc(200px * 10);
         }
         .partner-carousel img {
-            width: 150px;
-            height: 60px;
+            width: 180px;
+            height: 100px;
             object-fit: contain;
             margin: 0 20px;
             filter: grayscale(100%);
@@ -89,9 +80,75 @@
             right: 0;
             background: linear-gradient(to right, transparent, #f8f8f8);
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: modalopen 0.5s;
+        }
+        @keyframes modalopen {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        .close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #000;
+        }
+        .promo-bar {
+            background: linear-gradient(90deg, #ff4d4d, #f9cb28);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
+    <!-- Promotion Bar -->
+    <div class="promo-bar">
+        🎉 تخفيض خاص للشركات الناشئة حتى 30% لفترة محدودة! استفد من العرض الآن 🎉
+    </div>
+
     <!-- Header -->
     <header class="bg-gray-900 text-white py-6 sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 flex items-center justify-between">
@@ -102,8 +159,9 @@
             <nav class="flex space-x-6">
                 <a href="#pricing" class="nav-link text-lg hover:text-yellow-400">الأسعار</a>
                 <a href="#why-us" class="nav-link text-lg hover:text-yellow-400">لماذا نحن</a>
+                <a href="#portfolio" class="nav-link text-lg hover:text-yellow-400">أعمالنا</a>
+                <a href="#equipment" class="nav-link text-lg hover:text-yellow-400">عتادنا</a>
                 <a href="#partners" class="nav-link text-lg hover:text-yellow-400">شركاؤنا</a>
-                <a href="#contact" class="nav-link text-lg hover:text-yellow-400">تواصل معنا</a>
             </nav>
         </div>
     </header>
@@ -141,6 +199,80 @@
         </div>
     </section>
 
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-gray-900">آخر أعمالنا</h2>
+            <p class="mt-4 text-xl text-gray-600">نماذج من إنتاجاتنا التي نفخر بها</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">فيديو إعلاني لمطعم</h3>
+                        <p class="text-gray-600 mt-2">إنتاج كامل مع تصوير جوي</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">فيديو تعريفي لشركة</h3>
+                        <p class="text-gray-600 mt-2">تصوير داخلي وخارجي</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">حملة تسويقية</h3>
+                        <p class="text-gray-600 mt-2">ثلاثة فيديوهات قصيرة للسوشيال ميديا</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section id="equipment" class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-gray-900">عتادنا الاحترافي</h2>
+            <p class="mt-4 text-xl text-gray-600">نعمل بأفضل المعدات لضمان جودة إنتاجك</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
+                <div class="p-8 bg-gray-50 rounded-lg shadow-md">
+                    <i class="fas fa-video text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-gray-900">كاميرات احترافية</h3>
+                    <p class="text-gray-600 mt-3">كاميرات سوني A7S III و RED Komodo بجودة 6K و 8K</p>
+                </div>
+                
+                <div class="p-8 bg-gray-50 rounded-lg shadow-md">
+                    <i class="fas fa-microphone text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-gray-900">ميكروفونات</h3>
+                    <p class="text-gray-600 mt-3">ميكروفونات Rode و Sennheiser لنقل الصوت بدقة عالية</p>
+                </div>
+                
+                <div class="p-8 bg-gray-50 rounded-lg shadow-md">
+                    <i class="fas fa-lightbulb text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-gray-900">إضاءة احترافية</h3>
+                    <p class="text-gray-600 mt-3">أنظمة إضاءة Aputure و Godox لإضاءة احترافية</p>
+                </div>
+                
+                <div class="p-8 bg-gray-50 rounded-lg shadow-md">
+                    <i class="fas fa-drone text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-gray-900">درون DJI</h3>
+                    <p class="text-gray-600 mt-3">درون DJI Mavic 3 Pro بجودة 4K HDR</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Partners Section -->
     <section id="partners" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4 text-center">
@@ -148,10 +280,38 @@
             <p class="mt-4 text-xl text-gray-600">نفخر بالتعاون مع نخبة من العلامات التجارية المميزة</p>
             <div class="carousel-container mt-10">
                 <div class="partner-carousel flex">
-                    <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 1">
-                    <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 2">
-                  
-                  
+                    <div class="text-center mx-4">
+                        <p class="font-bold mb-2">شركة التقنية</p>
+                        <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 1">
+                    </div>
+                    <div class="text-center mx-4">
+                        <p class="font-bold mb-2">مجموعة الأعمال</p>
+                        <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 2">
+                    </div>
+                    <div class="text-center mx-4">
+                        <p class="font-bold mb-2">مطاعم لذيذة</p>
+                        <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 3">
+                    </div>
+                    <div class="text-center mx-4">
+                        <p class="font-bold mb-2">وكالة سفر</p>
+                        <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 4">
+                    </div>
+                    <div class="text-center mx-4">
+                        <p class="font-bold mb-2">علامة أزياء</p>
+                        <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 5">
+                    </div>
+                    <div class="text-center mx-4">
+                        <p class="font-bold mb-2">شركة عقارية</p>
+                        <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 6">
+                    </div>
+                    <div class="text-center mx-4">
+                        <p class="font-bold mb-2">مستشفى المدينة</p>
+                        <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 7">
+                    </div>
+                    <div class="text-center mx-4">
+                        <p class="font-bold mb-2">جامعة المعرفة</p>
+                        <img src="https://www.motomob.fr/wp-content/uploads/2017/03/logo-sym.png" alt="Partner 8">
+                    </div>
                 </div>
             </div>
         </div>
@@ -175,7 +335,7 @@
                         <li><i class="fas fa-check-circle text-yellow-500 mr-2"></i>موسيقى خلفية مرخصة</li>
                         <li><i class="fas fa-check-circle text-yellow-500 mr-2"></i>تعديل مجاني (مرة واحدة)</li>
                     </ul>
-                    <a href="#contact" class="mt-8 inline-block bg-yellow-500 text-gray-900 py-3 px-6 rounded-full hover:bg-yellow-400 transition duration-300 font-semibold">اطلب الآن</a>
+                    <button onclick="openModal('فيديوات محلات', '15,000دج')" class="mt-8 inline-block bg-yellow-500 text-gray-900 py-3 px-6 rounded-full hover:bg-yellow-400 transition duration-300 font-semibold">اطلب الآن</button>
                 </div>
 
                 <!-- فيديوات تعريفية -->
@@ -191,7 +351,7 @@
                         <li><i class="fas fa-check-circle text-yellow-500 mr-2"></i>تأثيرات بصرية متقدمة</li>
                         <li><i class="fas fa-check-circle text-yellow-500 mr-2"></i>دعم متعدد اللغات</li>
                     </ul>
-                    <a href="#contact" class="mt-8 inline-block bg-yellow-500 text-gray-900 py-3 px-6 rounded-full hover:bg-yellow-400 transition duration-300 font-semibold">اطلب الآن</a>
+                    <button onclick="openModal('فيديوات تعريفية', '35,000دج')" class="mt-8 inline-block bg-yellow-500 text-gray-900 py-3 px-6 rounded-full hover:bg-yellow-400 transition duration-300 font-semibold">اطلب الآن</button>
                 </div>
 
                 <!-- فيديوات تسويقية -->
@@ -207,7 +367,7 @@
                         <li><i class="fas fa-check-circle text-yellow-500 mr-2"></i>تحليل السوق المستهدف</li>
                         <li><i class="fas fa-check-circle text-yellow-500 mr-2"></i>تقرير أداء الحملة</li>
                     </ul>
-                    <a href="#contact " class="mt-8 inline-block bg-yellow-500 text-gray-900 py-3 px-6 rounded-full hover:bg-yellow-400 transition duration-300 font-semibold">اطلب الآن</a>
+                    <button onclick="openModal('فيديوات تسويقية', '80,000دج')" class="mt-8 inline-block bg-yellow-500 text-gray-900 py-3 px-6 rounded-full hover:bg-yellow-400 transition duration-300 font-semibold">اطلب الآن</button>
                 </div>
 
                 <!-- فيديوات شركات -->
@@ -223,36 +383,7 @@
                         <li><i class="fas fa-check-circle text-yellow-500 mr-2"></i>إضافة شعار وهوية بصرية</li>
                         <li><i class="fas fa-check-circle text-yellow-500 mr-2"></i>دعم ما بعد الإنتاج</li>
                     </ul>
-                    <a href="#contact" class="mt-8 inline-block bg-yellow-500 text-gray-900 py-3 px-6 rounded-full hover:bg-yellow-400 transition duration-300 font-semibold">اطلب الآن</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-900 text-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center">تواصل معنا</h2>
-            <p class="mt-4 text-xl text-center text-gray-300">املأ النموذج التالي وسنتواصل معك خلال 24 ساعة</p>
-            <div class="max-w-xl mx-auto mt-10 contact-form">
-                <div class="space-y-6">
-                    <div class="relative">
-                        <i class="fas fa-user absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                        <input type="text" placeholder="الاسم الكامل" class="w-full p-4 pr-10 rounded-lg border border-gray-600 focus:border-yellow-500">
-                    </div>
-                    <div class="relative">
-                        <i class="fas fa-envelope absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                        <input type="email" placeholder="البريد الإلكتروني" class="w-full p-4 pr-10 rounded-lg border border-gray-600 focus:border-yellow-500">
-                    </div>
-                    <div class="relative">
-                        <i class="fas fa-phone absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                        <input type="tel" placeholder="رقم الهاتف" class="w-full p-4 pr-10 rounded-lg border border-gray-600 focus:border-yellow-500">
-                    </div>
-                    <div class="relative">
-                        <i class="fas fa-comment absolute right-3 top-4 text-gray-400"></i>
-                        <textarea placeholder="رسالتك" class="w-full p-4 pr-10 rounded-lg border border-gray-600 focus:border-yellow-500 h-36"></textarea>
-                    </div>
-                    <button class="w-full bg-yellow-500 text-gray-900 py-4 rounded-full hover:bg-yellow-400 transition duration-300 font-semibold">إرسال الرسالة</button>
+                    <button onclick="openModal('فيديوات شركات', '100,000دج')" class="mt-8 inline-block bg-yellow-500 text-gray-900 py-3 px-6 rounded-full hover:bg-yellow-400 transition duration-300 font-semibold">اطلب الآن</button>
                 </div>
             </div>
         </div>
@@ -271,5 +402,55 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4" id="modalTitle">طلب خدمة</h2>
+            <p class="text-lg mb-6">أنت تطلب باقة: <span id="packageName" class="font-bold text-yellow-600"></span></p>
+            <p class="text-lg mb-6">السعر: <span id="packagePrice" class="font-bold text-yellow-600"></span></p>
+            <div class="relative mb-6">
+                <i class="fas fa-phone absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <input type="tel" id="clientPhone" placeholder="رقم هاتفك للتواصل" class="w-full p-4 pr-10 rounded-lg border border-gray-300 focus:border-yellow-500">
+            </div>
+            <button onclick="sendWhatsApp()" class="w-full bg-green-500 text-white py-3 px-6 rounded-full hover:bg-green-600 transition duration-300 font-semibold">
+                <i class="fab fa-whatsapp mr-2"></i> إرسال عبر واتساب
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function openModal(packageName, packagePrice) {
+            document.getElementById('packageName').textContent = packageName;
+            document.getElementById('packagePrice').textContent = packagePrice;
+            document.getElementById('orderModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        function sendWhatsApp() {
+            const packageName = document.getElementById('packageName').textContent;
+            const packagePrice = document.getElementById('packagePrice').textContent;
+            const phoneNumber = document.getElementById('clientPhone').value || '';
+            
+            const message = `مرحباً، أريد طلب الباقة التالية:\n\nالباقة: ${packageName}\nالسعر: ${packagePrice}\nرقم الهاتف: ${phoneNumber}\n\nشكراً`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/213673608090?text=${encodedMessage}`, '_blank');
+            
+            closeModal();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('orderModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
