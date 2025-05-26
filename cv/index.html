@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السيرة الذاتية - قرناني عبدالحليم</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 10mm 15mm;
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f7fa;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .container {
+            width: 210mm;
+            min-height: 287mm; /* 297mm - 10mm margin */
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #243876 0%, #1e2a5a 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        .header-text {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .title {
+            font-size: 15px;
+            color: #a3b1ff;
+        }
+        .main-content {
+            display: flex;
+            min-height: calc(287mm - 140px); /* Adjust based on header height */
+        }
+        .sidebar {
+            width: 35%;
+            background: #f8f9fc;
+            padding: 20px;
+        }
+        .content {
+            width: 65%;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #243876;
+            border-bottom: 1px solid #e1e5f2;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            right: 0;
+            width: 60px;
+            height: 2px;
+            background: #3a56b1;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .contact-icon {
+            width: 30px;
+            height: 30px;
+            background: #e1e5f2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+            color: #3a56b1;
+            font-size: 14px;
+        }
+        .skill-item {
+            margin-bottom: 12px;
+        }
+        .skill-name {
+            font-weight: 500;
+            margin-bottom: 3px;
+            font-size: 13px;
+        }
+        .skill-bar {
+            height: 6px;
+            background: #e1e5f2;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, #3a56b1, #5b7bf4);
+            border-radius: 3px;
+        }
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        .experience-item, .education-item {
+            margin-bottom: 18px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #e1e5f2;
+        }
+        .item-title {
+            font-weight: 700;
+            font-size: 15px;
+            color: #2c3e50;
+            margin-bottom: 3px;
+        }
+        .item-subtitle {
+            font-weight: 500;
+            color: #3a56b1;
+            margin-bottom: 3px;
+            font-size: 13px;
+        }
+        .item-date {
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        .item-description {
+            line-height: 1.5;
+            font-size: 13px;
+        }
+        .personal-info-item {
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .hobbies {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .hobby {
+            background: #e1e5f2;
+            color: #3a56b1;
+            padding: 3px 12px;
+            border-radius: 15px;
+            margin: 0 8px 8px 0;
+            font-size: 12px;
+        }
+        .profile-text {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        @media print {
+            body {
+                background: none;
+                font-size: 13px;
+            }
+            .container {
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+                min-height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .header {
+                padding: 15px 25px;
+            }
+            .profile-img {
+                width: 90px;
+                height: 90px;
+            }
+            .name {
+                font-size: 20px;
+            }
+            .title {
+                font-size: 14px;
+            }
+            .main-content {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-text">
+                <div class="name">قرناني عبدالحليم</div>
+                <div class="title">خريج جامعة محمد لمين دباغين سطيف</div>
+            </div>
+            <img src="https://s3.amazonaws.com/storage.seirah.com/cv_images/vXXLj72sAajitFXicswyFll6yFEfgpNaVXOkc3SK.png" alt="صورة شخصية" class="profile-img">
+        </div>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="section">
+                    <div class="section-title">معلومات شخصية</div>
+                    <div class="personal-info-item">
+                        <div class="info-label">الجنس:</div>
+                        <div>ذكر</div>
+                    </div>
+                    <div class="personal-info-item">
+                        <div class="info-label">تاريخ الميلاد:</div>
+                        <div>30 مارس 1999</div>
+                    </div>
+                    <div class="personal-info-item">
+                        <div class="info-label">الحالة الاجتماعية:</div>
+                        <div>متزوج</div>
+                    </div>
+                    <div class="personal-info-item">
+                        <div class="info-label">الجنسية:</div>
+                        <div>جزائري</div>
+                    </div>
+                    <div class="personal-info-item">
+                        <div class="info-label">الحالة الصحية:</div>
+                        <div>لديه مشكلة صحية</div>
+                    </div>
+                    <div class="personal-info-item">
+                        <div class="info-label">الخدمة العسكرية:</div>
+                        <div>أتم الخدمة العسكرية</div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">معلومات الاتصال</div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>+213 773 41 10 00</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>halim.karnani3@gmail.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🏠</div>
+                        <div>تجزئة 300 قطعة العزامية عين ازال</div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">المهارات</div>
+                    <div class="skill-item">
+                        <div class="skill-name">الإعلام الآلي (Excel, Word)</div>
+                        <div class="skill-bar"><div class="skill-level" style="width:100%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">التصميم - انفوغراف (Photoshop)</div>
+                        <div class="skill-bar"><div class="skill-level" style="width:100%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">تحرير الفيديو (Adobe Pr / Adobe Ae)</div>
+                        <div class="skill-bar"><div class="skill-level" style="width:80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">رخصة القيادة - صنف ب</div>
+                        <div class="skill-bar"><div class="skill-level" style="width:80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">التصوير</div>
+                        <div class="skill-bar"><div class="skill-level" style="width:60%"></div></div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">اللغات</div>
+                    <div class="lang-item">
+                        <span>العربية</span>
+                        <span>اللغة الأم</span>
+                    </div>
+                    <div class="lang-item">
+                        <span>الإنجليزية</span>
+                        <span>إجادة تامة في حدود العمل</span>
+                    </div>
+                    <div class="lang-item">
+                        <span>الفرنسية</span>
+                        <span>محدود</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">الهوايات</div>
+                    <div class="hobbies">
+                        <div class="hobby">التصميم</div>
+                        <div class="hobby">التجارة الالكترونية</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="section">
+                    <div class="section-title">الملف الشخصي</div>
+                    <p class="profile-text">شاب جزائري من مواليد 30 مارس 1999 بعموشة بعد التجربة التي مررت بها في مشواري التعليمي والبيداغوجي أسعى لتسخير ما أملكه من أحساس قوى من المسؤولية، التفاني في العمل، والدافع القوي للعمل والاستفادة من المؤهلات والمهارات التي حصلت عليها من خلال تحصيلي الأكاديمي في خدمة وتطوير العمل.</p>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">المؤهلات العلمية</div>
+                    <div class="education-item">
+                        <div class="item-title">ثانوية محمد بعيطيش عين ازال</div>
+                        <div class="item-subtitle">بكالوريوس - رياضيات</div>
+                        <div class="item-date">بكالوريا شعبة رياضيات بمعدل 12</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="item-title">جامعة محمد لمين دباغين سطيف 2</div>
+                        <div class="item-subtitle">ليسانس - ليسانس اكاديمي في التدريب الرياضي النخبوي</div>
+                        <div class="item-description">شهادة ليسانس اكاديمي بميدان علوم وتقنيات الأنشطة البدنية والرياضية شعبة التدريب الرياضي تخصص التدريب الرياضي التنافسي في رياضة العاب القوى</div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">الخبرات العملية</div>
+                    <div class="experience-item">
+                        <div class="item-title">المدرسة القرآنية حمزة بن عبدالمطلب</div>
+                        <div class="item-subtitle">مراقب مكلف بالادارة</div>
+                        <div class="item-date">2018-1-1 إلى 2020-12-1</div>
+                        <div class="item-description">مكلف بالجانب التقني والإعلامي</div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="item-title">ش.ذ.م.م بوشرابين لإنتاج البلاط الإسمنتي</div>
+                        <div class="item-subtitle">تقني إعلام الي</div>
+                        <div class="item-date">2017-12-1 إلى 2018-4-1</div>
+                        <div class="item-description">تقني صيانة اجهزة الإعلام الإلي والكميرات</div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="item-title">الشهاب للبحث العلمي</div>
+                        <div class="item-subtitle">مكلف بالإدارة ومصمم جرافيك</div>
+                        <div class="item-date">2021-1-1 إلى 2021-6-1</div>
+                        <div class="item-description">تسيير المركز من الناحية البيداغوجية والإشراف على فريق التصاميم</div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="item-title">المدرسة القرآنية حمزة بن عبدالمطلب</div>
+                        <div class="item-subtitle">مصمم جارفيك ومنتج فيديوات تعليمية اشهارية</div>
+                        <div class="item-date">2021-3-1</div>
+                        <div class="item-description">الإشراف على حسابات المدرسة عبر مواقع التواصل</div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="item-title">ش.ذ.م.م الجيريا هام موتورز Algeria Ham Motors</div>
+                        <div class="item-subtitle">مساعد مصلحة تجارية</div>
+                        <div class="item-date">2022-3-1 إلى 2024-3-1</div>
+                        <div class="item-description">مساعد المكلف بالمصلحة التجارية في الشركة، الإشراف على عمليات بيع قطع غيار الدراجات النارية</div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="item-title">ش.ذ.م.م ابن عوف عين الحجر</div>
+                        <div class="item-subtitle">مكلف بالمصلحة التجارية</div>
+                        <div class="item-date">2024-3-1 إلى 2025-3-1</div>
+                        <div class="item-description">مكلف بالمبيعات على مستوى المصلحة التجارية Sym algerie</div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">الدورات التدريبية</div>
+                    <div class="experience-item">
+                        <div class="item-title">الشاب المتميز في إنشاء مواقع الويب</div>
+                        <div class="item-subtitle">مديرية الشباب والرياضة لولاية سطيف</div>
+                        <div class="item-description">المرتبة الأولى ولائيا لمرتين على التوالي في تصميم المواقع 2019/2018</div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="item-title">برنامج المبيعات inabex work</div>
+                        <div class="item-subtitle">ssarl Algeria Ham motors sym algerie</div>
+                        <div class="item-description">دورة تكوينية في برنامج تسيير الشركات وادارة المبيعات</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
