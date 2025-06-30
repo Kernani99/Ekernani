@@ -812,6 +812,9 @@
             width: 100%;
             animation: ticker 25s linear infinite; /* Slower animation for smoother feel */
             padding-top: 5px; /* Small padding at top for initial visibility */
+            /* Ensure initial position is not distorted */
+            top: 0;
+            right: 0;
         }
         
         @keyframes ticker {
@@ -1092,7 +1095,7 @@
                         <i class="fas fa-dollar-sign"></i>
                     </div>
                     <div class="currency-name">الدولار الأمريكي</div>
-                    <div class="currency-rate" id="usd-rate">1 USD = 242.00 DZD</div>
+                    <div class="currency-rate" id="usd-rate">1 USD = 245.00 DZD</div>
                     <div class="update-info">سعر اليوم</div>
                 </div>
                 
@@ -1101,7 +1104,7 @@
                         <i class="fas fa-pound-sign"></i>
                     </div>
                     <div class="currency-name">الجنيه الإسترليني</div>
-                    <div class="currency-rate" id="gbp-rate">1 GBP = 305.00 DZD</div>
+                    <div class="currency-rate" id="gbp-rate">1 GBP = 300.00 DZD</div>
                     <div class="update-info">سعر اليوم</div>
                 </div>
             </div>
@@ -1165,7 +1168,7 @@
                     
                     <div class="exchange-rate-display" id="exchange-rate-display">
                         <div id="current-rate-display" class="text-xl text-blue-600 mb-2"></div>
-                        <div class="update-info text-sm text-gray-500 font-normal">آخر تحديث: <input type="text" id="update-date" class="update-date-input" value="الإثنين، 30 جوان 2025"></div>
+                        <div class="update-info text-sm text-gray-500 font-normal">آخر تحديث: <input type="text" id="update-date" class="update-date-input" value="الاثنين، 30 جوان 2025"></div>
                     </div>
                     
                     <div class="flex flex-col items-center gap-4 md:flex-row md:justify-end">
@@ -1261,11 +1264,16 @@
         
         // Sample transaction data for the ticker (can be expanded)
         const currencyTransactions = [
-            { type: 'buy', currency: 'EUR', amount: 100, name: 'ياسين ' },
-            { type: 'sell', currency: 'EUR', amount: 250, name: 'يونس ' },
-            { type: 'sell', currency: 'EUR', amount: 500, name: 'محمد ' },
-            { type: 'buy', currency: 'EUR', amount: 1000, name: 'علي' },
-            { type: 'sell', currency: 'EUR', amount: 1000, name: 'سامي ' },
+            { type: 'buy', currency: 'EUR', amount: 1000, name: 'علي ' },
+            { type: 'sell', currency: 'EUR', amount: 1000, name: 'سامي' },
+                        { type: 'sell', currency: 'EUR', amount: 250, name: 'يونس' },
+                        { type: 'buy', currency: 'EUR', amount: 250, name: 'محمد ' },
+                        { type: 'buy', currency: 'EUR', amount: 1000, name: 'العلمة ستور ' },
+                        { type: 'buy', currency: 'EUR', amount: 150, name: 'ضياء ' },
+
+
+
+
         ];
         
         // Function to display the latest currency transactions in the ticker
@@ -1328,10 +1336,7 @@
             // Set the current rate for calculations
             currentCurrency = selectedCurrencyCode;
 
-            // Removed automatic date update
-            // const today = new Date();
-            // const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            // document.getElementById('update-date').value = today.toLocaleDateString('ar-DZ', options);
+            // Date input is now manual, so no auto-update here
         }
         
         // Function to set the exchange rate type (buy or sell)
@@ -1428,9 +1433,36 @@
 
             // Add event listeners for currency converter elements
             const currencySelect = document.getElementById('currency');
+            const amountInput = document.getElementById('amount');
+            const convertBtn = document.getElementById('convert-btn');
+            const customSelectDisplay = document.querySelector('.custom-select-display'); // Get the custom display div
+
             currencySelect.addEventListener('change', updateExchangeRateDisplay);
-            document.getElementById('amount').addEventListener('input', convertCurrency); // Real-time conversion
-            document.getElementById('convert-btn').addEventListener('click', convertCurrency);
+            amountInput.addEventListener('input', convertCurrency); // Real-time conversion
+            convertBtn.addEventListener('click', convertCurrency);
+
+            // FIX: Add click listener to custom-select-display to open the native select
+            customSelectDisplay.addEventListener('click', function() {
+                // Programmatically open the native select dropdown
+                // This might require different approaches for cross-browser compatibility
+                // A common trick is to focus and then dispatch a mousedown event
+                currencySelect.focus();
+                const event = new MouseEvent('mousedown', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                });
+                currencySelect.dispatchEvent(event);
+            });
 
             // Close Euro popup button
-            document.getElementB
+            document.getElementById('closeEuroPopup').addEventListener('click', hideEuroBalancePopup);
+            // Close Euro popup when clicking outside (overlay)
+            document.getElementById('euroPopupOverlay').addEventListener('click', hideEuroBalancePopup);
+
+            // Initial conversion calculation after page load (if amount has default value)
+            convertCurrency(); // Ensure conversion result is shown on load if default amount is set
+        });
+    </script>
+</body>
+</html>
